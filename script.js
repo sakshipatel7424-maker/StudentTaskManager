@@ -224,7 +224,7 @@ aiPlanBtn.addEventListener("click", async () => {
 
     try {
 
-        const response = await fetch("http://127.0.0.1:5000/plan", {
+        const response = await fetch("hcomttps://studenttaskmanager-2gz1.onrender.com", {
 
             method: "POST",
 
