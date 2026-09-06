@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Task Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📚 Student Task Manager</h1>
+        <p class="subtitle">Organize your studies. Stay productive.</p>
+
+        <!-- Add Task Section -->
+        <div class="task-form">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Enter your task..."
+            >
+
+            <input
+                type="date"
+                id="deadlineInput"
+            >
+
+            <select id="priorityInput">
+                <option value="High">🔴 High</option>
+                <option value="Medium">🟡 Medium</option>
+                <option value="Low">🟢 Low</option>
+            </select>
+
+            <button id="addTaskBtn">➕ Add Task</button>
+
+        </div>
+
+
+        <!-- Dashboard -->
+        <div class="dashboard">
+
+            <div class="stat-card">
+                <h3>Total</h3>
+                <p id="totalTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Completed</h3>
+                <p id="completedTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>Pending</h3>
+                <p id="pendingTasks">0</p>
+            </div>
+
+        </div>
+
+
+        <!-- Filters -->
+        <div class="filters">
+
+            <button class="filter-btn active" data-filter="all">
+                All
+            </button>
+
+            <button class="filter-btn" data-filter="pending">
+                Pending
+            </button>
+
+            <button class="filter-btn" data-filter="completed">
+                Completed
+            </button>
+
+        </div>
+
+
+        <!-- Task List -->
+        <div id="taskList">
+
+            <!-- Tasks will appear here using JavaScript -->
+
+        </div>
+
+
+        <!-- AI Section -->
+        <div class="ai-section">
+
+            <h2>🤖 AI Study Planner</h2>
+
+            <p>
+                Let AI analyze your tasks and suggest
+                the best order to complete them.
+            </p>
+
+            <button id="aiPlanBtn">
+                🤖 Plan My Tasks
+            </button>
+
+            <div id="aiResult"></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
