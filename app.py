@@ -19,9 +19,69 @@ def home():
     return "Student Task Manager AI Backend is Running! 🤖"
 
 
-@app.route("/plan", methods=["POST"])
+@app.route("/plan", methods=["GET", "POST"])
 def plan_tasks():
 
+    if request.method == "GET":
+        return jsonify({
+            "message": "AI planning endpoint is working! 🤖"
+        })
+
+    data = request.get_json()
+
+    tasks = data.get("tasks", [])
+
+    if not tasks:
+        return jsonify({
+            "error": "No tasks were provided."
+        }), 400
+
+    task_text = ""
+
+    for task in tasks:
+        task_text += (
+            f"Task: {task.get('title')}\n"
+            f"Deadline: {task.get('deadline') or 'No deadline'}\n"
+            f"Priority: {task.get('priority')}\n\n"
+        )
+
+    prompt = f"""
+You are a student productivity assistant.
+
+Analyze the following student tasks based on:
+- deadline
+- priority
+- urgency
+
+Recommend the best order to complete them.
+
+For each task:
+1. Give its recommended position.
+2. Give a short reason.
+
+Keep the response simple and practical.
+
+Student tasks:
+
+{task_text}
+"""
+
+    try:
+
+        response = client.responses.create(
+            model="gpt-5.6-luna",
+            input=prompt
+        )
+
+        return jsonify({
+            "plan": response.output_text
+        })
+
+    except Exception as e:
+
+        return jsonify({
+            "error": str(e)
+        }), 500
     data = request.get_json()
 
     tasks = data.get("tasks", [])
